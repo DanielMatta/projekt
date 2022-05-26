@@ -74,19 +74,19 @@ main form input:focus {
           box-shadow: 0px 1px 10px black;
 }
 
-main article.container {
+main li.container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
 }
 
-main article.container .round {
+main li.container .round {
   position: relative;
   right: 25px;
   top: 5px;
 }
 
-main article.container .round label {
+main li.container .round label {
   background-color: #fff;
   border: 1px solid #ccc;
   border-radius: 50%;
@@ -100,7 +100,7 @@ main article.container .round label {
           box-shadow: 0px 1px 10px #353333;
 }
 
-main article.container .round label:after {
+main li.container .round label:after {
   border: 2px solid #fff;
   border-top: none;
   border-right: none;
@@ -115,20 +115,20 @@ main article.container .round label:after {
   width: 12px;
 }
 
-main article.container .round input[type="checkbox"] {
+main li.container .round input[type="checkbox"] {
   visibility: hidden;
 }
 
-main article.container .round input[type="checkbox"]:checked + label {
+main li.container .round input[type="checkbox"]:checked + label {
   background-color: #66bb6a;
   border-color: #66bb6a;
 }
 
-main article.container .round input[type="checkbox"]:checked + label:after {
+main li.container .round input[type="checkbox"]:checked + label:after {
   opacity: 1;
 }
 
-main article.container section.todotask {
+main li.container section.todotask {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -151,26 +151,26 @@ main article.container section.todotask {
           align-items: center;
 }
 
-main article.container section.todotask .todotask-text {
+main li.container section.todotask .todotask-text {
   font-family: "Gochi Hand", cursive;
   font-size: 1.5em;
 }
 
-main article.container section.todotask:hover .buttons {
+main li.container section.todotask:hover .buttons {
   opacity: 1;
 }
 
-main article.container section.todotask:hover .buttons .delete {
+main li.container section.todotask:hover .buttons .delete {
   -webkit-transform: scale(1);
           transform: scale(1);
 }
 
-main article.container section.todotask:hover .buttons .edit {
+main li.container section.todotask:hover .buttons .edit {
   -webkit-transform: scale(1);
           transform: scale(1);
 }
 
-main article.container section.todotask .buttons {
+main li.container section.todotask .buttons {
   position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -182,7 +182,7 @@ main article.container section.todotask .buttons {
   transition: 0.8s ease-in-out;
 }
 
-main article.container section.todotask .buttons .edit {
+main li.container section.todotask .buttons .edit {
   color: #ffe41c;
   cursor: pointer;
   -webkit-transform: scale(0.1);
@@ -191,13 +191,13 @@ main article.container section.todotask .buttons .edit {
   transition: 0.5s ease-in-out;
 }
 
-main article.container section.todotask .buttons .edit:hover {
+main li.container section.todotask .buttons .edit:hover {
   color: #ffe943;
   -webkit-transform: scale(1.2);
           transform: scale(1.2);
 }
 
-main article.container section.todotask .buttons .delete {
+main li.container section.todotask .buttons .delete {
   color: darkred;
   cursor: pointer;
   -webkit-transform: scale(0.1);
@@ -206,13 +206,13 @@ main article.container section.todotask .buttons .delete {
   transition: 0.5s ease-in-out;
 }
 
-main article.container section.todotask .buttons .delete:hover {
+main li.container section.todotask .buttons .delete:hover {
   color: red;
   -webkit-transform: scale(1.2);
           transform: scale(1.2);
 }
 
-main article.container section.todotask:hover {
+main li.container section.todotask:hover {
   outline: none;
   -webkit-box-shadow: 0px 1px 10px black;
           box-shadow: 0px 1px 10px black;

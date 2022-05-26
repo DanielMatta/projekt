@@ -39,7 +39,6 @@ main {
       &:hover {
         box-shadow: 0px 1px 10px black;
         transform: scale(1.2) rotate(-90deg);
-        // transform: rotate(-90deg);
       }
       //   &:active {
       //     transition: 0.3s;
@@ -63,7 +62,7 @@ main {
     }
   }
 
-  article.container {
+  li.container {
     display: flex;
     // position: relative;
     .round {

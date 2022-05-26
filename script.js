@@ -1,36 +1,68 @@
 const listItem = document.querySelector(".todotask")
-// console.log(listItem);
-const editButton = document.querySelector(".edit")
-const deleteButton = document.querySelector(".delete")
-const isChecked = document.querySelector("#checkbox:checked")
+const todoList = document.querySelector("#todolist")
+const isChecked = document.querySelector(".cbox4:checked")
 
-
-// listItem.addEventListener("mouseover", () => {
-
-//     setTimeout(() => { editButton.style.display = "inline-block"; }, 450);
-
-// })
-// listItem.addEventListener("mouseleave", () => {
-//     setTimeout(() => { editButton.style.display = "none"; }, 450);
-
-// })
-
-// listItem.addEventListener("mouseover", () => {
-//     setTimeout(() => { deleteButton.style.display = "inline-block"; }, 450);
-
-// })
-// listItem.addEventListener("mouseleave", () => {
-//     setTimeout(() => { deleteButton.style.display = "none"; }, 450);
-
-// })
-
-function test(event) {
-    console.log(event.target.checked)
-    if (event.target.checked) {
-        listItem.style.textDecoration = "line-through"
-    } else {
-        listItem.style.textDecoration = "none"
+const todos = [
+    {
+        id: 1,
+        title: "umy riad",
+        isDone: 0
+    },
+    {
+        id: 2,
+        title: "utri riad",
+        isDone: 0
+    },
+    {
+        id: 3,
+        title: "odloz riad",
+        isDone: 0
     }
+]
 
-
+function createTodo(todo) {
+    const newTodoItem = document.createElement("li")
+    newTodoItem.setAttribute("class", "container")
+    newTodoItem.innerHTML = `
+    <aside class="round">
+            <input
+              type="checkbox"
+              onchange="${toggleCheck(this)}"
+              class="cbox4"
+            />
+            <label for="checkbox"></label>
+          </aside>
+          <section class="todotask">
+            <label class="todotask-text" for="cbox4">${todo.title}</label>
+            <div class="buttons">
+              <span class="edit">
+                <i class="fa fa-pencil" aria-hidden="true"></i>
+              </span>
+              <span class="delete">
+                <i class="fa fa-times" aria-hidden="true"></i>
+              </span>
+            </div>
+          </section>
+    `
+    return newTodoItem;
 }
+function renderTodos() {
+    todos.forEach(todo => {
+        const newTodo = createTodo(todo)
+        todoList.appendChild(newTodo)
+
+
+    });
+}
+
+
+function toggleCheck(event) {
+    console.log(event)
+    // if (event.target.checked) {
+    //     listItem.style.textDecoration = "line-through"
+    // } else {
+    //     listItem.style.textDecoration = "none"
+    // }
+}
+
+renderTodos();  
