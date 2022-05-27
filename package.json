@@ -1,0 +1,19 @@
+{
+  "name": "todo",
+  "version": "1.0.0",
+  "description": "Todo App",
+  "main": "script.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DanielMatta/projekt.git"
+  },
+  "author": "CSS Hustlers",
+  "license": "MIT",
+  "workspaces": [
+    "packages/frontend",
+    "packages/backend"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
