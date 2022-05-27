@@ -14,6 +14,7 @@ header {
   h1 {
     font-weight: 700;
     font-style: italic;
+    user-select: none;
   }
 }
 
@@ -179,6 +180,7 @@ main {
 }
 
 footer {
+  user-select: none;
   p {
     position: fixed;
     bottom: 1em;
