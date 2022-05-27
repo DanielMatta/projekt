@@ -27,7 +27,7 @@ function createTodo(todo) {
     <aside class="round">
             <input
               type="checkbox"
-              onchange="${toggleCheck(this)}"
+              onchange="\${toggleCheck()}"
               class="cbox4"
             />
             <label for="checkbox"></label>
@@ -58,11 +58,11 @@ function renderTodos() {
 
 function toggleCheck(event) {
     console.log(event)
-    // if (event.target.checked) {
-    //     listItem.style.textDecoration = "line-through"
-    // } else {
-    //     listItem.style.textDecoration = "none"
-    // }
+    if (event.target.checked) {
+        listItem.style.textDecoration = "line-through"
+    } else {
+        listItem.style.textDecoration = "none"
+    }
 }
 
 renderTodos();  
