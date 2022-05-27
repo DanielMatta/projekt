@@ -1,29 +1,31 @@
-const listItem = document.querySelector(".todotask")
-const todoList = document.querySelector("#todolist")
-const isChecked = document.querySelector(".cbox4:checked")
+import "./styles/style.scss";
+
+const listItem = document.querySelector(".todotask");
+const todoList = document.querySelector("#todolist");
+const isChecked = document.querySelector(".cbox4:checked");
 
 const todos = [
-    {
-        id: 1,
-        title: "umy riad",
-        isDone: 0
-    },
-    {
-        id: 2,
-        title: "utri riad",
-        isDone: 0
-    },
-    {
-        id: 3,
-        title: "odloz riad",
-        isDone: 0
-    }
-]
+  {
+    id: 1,
+    title: "umy riad",
+    isDone: 0,
+  },
+  {
+    id: 2,
+    title: "utri riad",
+    isDone: 0,
+  },
+  {
+    id: 3,
+    title: "odloz riad",
+    isDone: 0,
+  },
+];
 
 function createTodo(todo) {
-    const newTodoItem = document.createElement("li")
-    newTodoItem.setAttribute("class", "container")
-    newTodoItem.innerHTML = `
+  const newTodoItem = document.createElement("li");
+  newTodoItem.setAttribute("class", "container");
+  newTodoItem.innerHTML = `
     <aside class="round">
             <input
               type="checkbox"
@@ -43,26 +45,23 @@ function createTodo(todo) {
               </span>
             </div>
           </section>
-    `
-    return newTodoItem;
+    `;
+  return newTodoItem;
 }
 function renderTodos() {
-    todos.forEach(todo => {
-        const newTodo = createTodo(todo)
-        todoList.appendChild(newTodo)
-
-
-    });
+  todos.forEach((todo) => {
+    const newTodo = createTodo(todo);
+    todoList.appendChild(newTodo);
+  });
 }
-
 
 function toggleCheck(event) {
-    console.log(event)
-    if (event.target.checked) {
-        listItem.style.textDecoration = "line-through"
-    } else {
-        listItem.style.textDecoration = "none"
-    }
+  console.log(event);
+  if (event.target.checked) {
+    listItem.style.textDecoration = "line-through";
+  } else {
+    listItem.style.textDecoration = "none";
+  }
 }
 
-renderTodos();  
+renderTodos();

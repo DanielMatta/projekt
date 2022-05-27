@@ -14,6 +14,7 @@
     "packages/backend"
   ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "be:dev": "npm run dev --workspace=packages/backend",
+    "fe:dev": "npm run dev --workspace=packages/frontend"
   }
 }
