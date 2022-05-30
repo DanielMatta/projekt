@@ -15,7 +15,6 @@ app.get("/tasks", (req, res) => {
   });
 });
 
-
 app.post("/tasks", (req, res) => {
   const data = {
     title: req.body.title,
@@ -32,13 +31,16 @@ app.post("/tasks", (req, res) => {
   });
 });
 
-app.delete("/tasks", (req, res) => {
-  data.destroy({
-    where: {
-      'id$': 2
-    },
+app.delete("/task/:id", (req, res) => {
+  const sql = "DELETE FROM tasks WHERE id = ?";
+  const params = [req.params.id];
+  db.run(sql, params, (err) => {
+    if (err) {
+      res.status(400).json({ error: err.message });
+      return;
+    }
+    res.json({ message: "deleted" });
   });
-  res.render("deleted");
 });
 
 app.listen(port, () => {
