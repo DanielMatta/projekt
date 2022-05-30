@@ -4,23 +4,7 @@ const listItem = document.querySelector(".todotask");
 const todoList = document.querySelector("#todolist");
 const isChecked = document.querySelector(".cbox4:checked");
 
-const todos = [
-  {
-    id: 1,
-    title: "umy riad",
-    isDone: 0,
-  },
-  {
-    id: 2,
-    title: "utri riad",
-    isDone: 0,
-  },
-  {
-    id: 3,
-    title: "odloz riad",
-    isDone: 0,
-  },
-];
+let todos = [];
 
 function createTodo(todo) {
   const newTodoItem = document.createElement("li");
@@ -64,4 +48,11 @@ function toggleCheck(event) {
   }
 }
 
-renderTodos();
+function fetchTasks() {
+  fetch("http://localhost:3001/tasks")
+    .then((response) => response.json())
+    .then((data) => (todos = data))
+    .then(() => console.log(todos));
+}
+fetchTasks();
+// renderTodos();
