@@ -15,7 +15,14 @@ const db = new sqlite.Database(dbName, (err) => {
         title text,
         isDone INTEGER
       );
-    `,
+
+      INSERT INTO tasks(title)
+      VALUES('Riad');
+
+     
+
+    `
+      ,
       (err) => {
         if (err) {
           console.log("Table already created.");

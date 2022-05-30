@@ -15,6 +15,7 @@ app.get("/tasks", (req, res) => {
   });
 });
 
+
 app.post("/tasks", (req, res) => {
   const data = {
     title: req.body.title,
@@ -29,6 +30,15 @@ app.post("/tasks", (req, res) => {
     }
     res.json({ message: "success" });
   });
+});
+
+app.delete("/tasks", (req, res) => {
+  data.destroy({
+    where: {
+      'id$': 2
+    },
+  });
+  res.render("deleted");
 });
 
 app.listen(port, () => {
