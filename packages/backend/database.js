@@ -16,11 +16,6 @@ const db = new sqlite.Database(dbName, (err) => {
         isDone INTEGER
       );
 
-      INSERT INTO tasks(title)
-      VALUES('Riad');
-
-     
-
     `
       ,
       (err) => {
