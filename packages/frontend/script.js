@@ -1,12 +1,18 @@
 import "./styles/style.scss";
 
-const listItem = document.querySelector(".todotask");
-const todoList = document.querySelector("#todolist");
-const isChecked = document.querySelector(".cbox4:checked");
+const todoList = document.getElementById("todolist");
+const taskForm = document.getElementById("new_task_form");
+const taskFormInput = document.getElementById("new_task_input");
 
-let todos = null;
+taskForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const newTaskInputValue = taskForm.elements.new_task_input.value;
+  await createNewTask(newTaskInputValue);
+  taskForm.elements.new_task_input.value = "";
+  renderTasks();
+});
 
-function createTask(task) {
+function renderSingleTask(task) {
   const li = document.createElement("li");
 
   const input = document.createElement("input");
@@ -42,24 +48,27 @@ async function renderTasks() {
   }
 
   tasks.forEach((task) => {
-    const taskElement = createTask(task);
+    const taskElement = renderSingleTask(task);
     todoList.appendChild(taskElement);
   });
-}
-
-function toggleCheck(event) {
-  console.log(event);
-  if (event.target.checked) {
-    listItem.style.textDecoration = "line-through";
-  } else {
-    listItem.style.textDecoration = "none";
-  }
 }
 
 async function fetchTasks() {
   const response = await fetch("http://localhost:3001/tasks");
   const data = await response.json();
   return data;
+}
+
+async function createNewTask(taskTitle) {
+  const response = await fetch("http://localhost:3001/tasks", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ title: taskTitle }),
+  });
+  const result = await response.json();
+  return result;
 }
 
 renderTasks();

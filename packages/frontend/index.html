@@ -16,21 +16,18 @@
       <h1>ToDo</h1>
     </header>
     <main>
-      <form>
-        <input type="text" placeholder="Clean the dishes..." maxlength="25" />
-        <button>
+      <form id="new_task_form">
+        <input
+          id="new_task_input"
+          type="text"
+          placeholder="Clean the dishes..."
+          maxlength="25"
+        />
+        <button type="submit">
           <i class="fa fa-plus" aria-hidden="true"></i>
         </button>
       </form>
-      <ul id="todolist">
-        <!-- <li>
-          <input type="checkbox" class="checkbox-round" />
-          <section>
-            <h3>TODO text</h3>
-            <div><span>Pencil</span><span>Cross</span></div>
-          </section>
-        </li> -->
-      </ul>
+      <ul id="todolist"></ul>
     </main>
 
     <footer>
