@@ -68,7 +68,10 @@ main {
     // position: relative;
     padding: 0.5em;
     align-items: center;
-
+    [contenteditable] {
+      //background-color: rgba(217, 245, 255, 0.5);
+      outline: none;
+    }
     .checkbox-round {
       width: 1.3em;
       height: 1.3em;

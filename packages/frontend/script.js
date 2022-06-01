@@ -15,15 +15,18 @@ taskForm.addEventListener("submit", async (e) => {
 
 // buttons.addEventListener("click", async (e) => {
 //   e.preventDefault();
-//   const deleteTaskId = document.getElementById("?");
-
+//   const deleteTaskId = todoList.elements.id;
+//   await deleteTask(deleteTaskId);
+//   renderTasks();
 // })
 
+// console.log(document.getElementById("8"));
 
 
 function renderSingleTask(task) {
   const li = document.createElement("li");
   li.classList.add("container")
+  li.setAttribute("id", task.id)
 
   const input = document.createElement("input");
   const label = document.createElement("label");
@@ -39,6 +42,7 @@ function renderSingleTask(task) {
   const h3 = document.createElement("h3");
   h3.innerText = task.title;
   h3.classList.add("todotask-text");
+  h3.setAttribute("contenteditable", "true")
 
   const div = document.createElement("div");
   div.classList.add("buttons");
@@ -47,7 +51,14 @@ function renderSingleTask(task) {
   spanPencil.classList.add("edit");
   const spanCross = document.createElement("span");
   spanCross.classList.add("delete");
-  li.setAttribute("id", task.id)
+  spanCross.addEventListener("click", async (e) => {
+    e.preventDefault();
+    const deleteTaskId = e.target.closest(".container").id;
+    await deleteTask(deleteTaskId);
+    renderTasks();
+  })
+
+
 
 
   const iconEdit = document.createElement("i");
@@ -102,7 +113,7 @@ async function createNewTask(taskTitle) {
 }
 
 async function deleteTask(taskId) {
-  const response = await fetch("http://localhost:3001/task/:taskId", {
+  const response = await fetch("http://localhost:3001/task/" + taskId, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
@@ -113,5 +124,17 @@ async function deleteTask(taskId) {
   return result;
 }
 
-deleteTask(6);
+async function editTask(taskId, taskTitle) {
+  const response = await fetch("http://localhost:3001/task/" + taskId + "/title", {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ title: taskTitle }),
+  });
+  const result = await response.json();
+  return result;
+}
+
+//editTask(16, "cau")
 renderTasks();
