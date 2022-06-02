@@ -19,6 +19,20 @@ header {
 }
 
 main {
+  .taskSort {
+    width: 10em;
+    height: 2em;
+    border-radius: 2em;
+    border: none;
+    background-color: #84b026;
+    box-shadow: 0px 1px 10px rgb(53, 51, 51);
+    cursor: pointer;
+    transition: 0.5s ease-in-out;
+    &:hover {
+      box-shadow: 0px 1px 10px black;
+      transform: scale(1.2);
+    }
+  }
   display: grid;
   justify-items: center;
   gap: 1em;
@@ -66,12 +80,14 @@ main {
   li.container {
     display: flex;
     // position: relative;
+
     padding: 0.5em;
     align-items: center;
     [contenteditable] {
       //background-color: rgba(217, 245, 255, 0.5);
       outline: none;
     }
+
     .checkbox-round {
       width: 1.3em;
       height: 1.3em;
@@ -119,6 +135,7 @@ main {
       display: flex;
       align-items: space;
       justify-content: space-between;
+      clear: both;
       height: 2.5em;
       width: 18em;
       border-radius: 0.8em;
@@ -146,15 +163,30 @@ main {
       .buttons {
         position: relative;
         display: flex;
+        align-items: center;
         gap: 1em;
-        padding-right: 1em;
-        opacity: 0;
+        // padding-right: 1em;
+
         transition: 0.8s ease-in-out;
+        .priority {
+          button {
+            position: relative;
+            top: 2px;
+            // right: 1em;
+            width: 1em;
+            height: 3em;
+            border-radius: 0 50% 50% 0;
+            border: none;
+            background-color: #9cd423;
+            cursor: pointer;
+          }
+        }
         .edit {
           color: rgb(255, 228, 28);
           cursor: pointer;
-          transform: scale(0.1);
+          transform: scale(0);
           transition: 0.5s ease-in-out;
+          // opacity: 0;
           &:hover {
             color: #ffe943;
             transform: scale(1.2);
@@ -163,8 +195,9 @@ main {
         .delete {
           color: darkred;
           cursor: pointer;
-          transform: scale(0.1);
+          transform: scale(0);
           transition: 0.5s ease-in-out;
+          // opacity: 0;
 
           &:hover {
             color: red;

@@ -13,15 +13,6 @@ taskForm.addEventListener("submit", async (e) => {
   renderTasks();
 });
 
-// buttons.addEventListener("click", async (e) => {
-//   e.preventDefault();
-//   const deleteTaskId = todoList.elements.id;
-//   await deleteTask(deleteTaskId);
-//   renderTasks();
-// })
-
-// console.log(document.getElementById("8"));
-
 
 
 function renderSingleTask(task) {
@@ -38,10 +29,14 @@ function renderSingleTask(task) {
   input.addEventListener("click", async (e) => {
     e.preventDefault();
     const doneId = e.target.closest(".container").id;
+    // const text = e.target.closest(".container").querySelector(".todotask").querySelector("h3");
     if (input.checked) {
-      DoneEdit(doneId, 1);
+      await DoneEdit(doneId, 1);
+      // text.style.textDecorationLine = "line-through"
+      // console.log(e.target.closest(".container").querySelector(".todotask").querySelector("h3"));
     } else {
-      DoneEdit(doneId, 0);
+      await DoneEdit(doneId, 0);
+      // text.style.textDecorationLine = "none"
     }
     renderTasks();
   })
@@ -53,24 +48,50 @@ function renderSingleTask(task) {
   const section = document.createElement("section");
   section.classList.add("todotask");
 
+  const prio = document.createElement("div")
+  prio.classList.add("priority");
+
+  const button = document.createElement("button")
+  let i = 1;
+  const colors = ["#9cd423", "orange", "red"];
+  button.style.backgroundColor = colors[task.prio]
+  button.addEventListener("click", (e) => {
+    const editPrioId = e.target.closest(".container").id;
+    if (i > 2) {
+      i = 0;
+    }
+    button.style.backgroundColor = colors[i];
+    prioEdit(editPrioId, i);
+    i++;
+
+
+
+
+    //renderTasks();
+  })
+
+
   const h3 = document.createElement("h3");
+  if (task.isDone) {
+    h3.style.textDecorationLine = "line-through"
+  }
   h3.innerText = task.title;
   h3.classList.add("todotask-text");
   h3.setAttribute("contenteditable", "true")
+
 
   const div = document.createElement("div");
   div.classList.add("buttons");
 
   const spanPencil = document.createElement("span");
   spanPencil.classList.add("edit");
-  // spanPencil.addEventListener("click", async (e) => {
-  //   const titleText = document.getElementsByClassName("todotask-text");
-  // e.preventDefault();
-  // const editTaskId = e.target.closest(".container").id;
-  // await editTask(editTaskId);
-  // renderTasks();
-  // console.log(titleText.parentNode);
-  // })
+  spanPencil.addEventListener("click", async (e) => {
+    const titleText = e.target.closest(".todotask").querySelector("h3").innerText;
+    e.preventDefault();
+    const editTaskId = e.target.closest(".container").id;
+    await editTask(editTaskId, titleText);
+    renderTasks();
+  })
   const spanCross = document.createElement("span");
   spanCross.classList.add("delete");
   spanCross.addEventListener("click", async (e) => {
@@ -79,6 +100,7 @@ function renderSingleTask(task) {
     await deleteTask(deleteTaskId);
     renderTasks();
   })
+
 
 
 
@@ -98,8 +120,11 @@ function renderSingleTask(task) {
   div.append(spanCross);
   section.append(h3);
   section.append(div);
+  div.append(prio);
+  prio.append(button)
   li.append(input);
   li.append(section);
+
 
   return li;
 }
@@ -110,6 +135,8 @@ async function renderTasks() {
   while (todoList.firstChild) {
     todoList.firstChild.remove();
   }
+
+  tasks.sort((a, b) => (a.prio < b.prio) ? 1 : ((b.prio < a.prio) ? -1 : 0))
 
   tasks.forEach((task) => {
     const taskElement = renderSingleTask(task);
@@ -123,13 +150,20 @@ async function fetchTasks() {
   return data;
 }
 
-async function createNewTask(taskTitle) {
+const taskSort = document.querySelector(".taskSort");
+console.log(taskSort);
+taskSort.addEventListener("click", (e) => {
+  e.preventDefault();
+  renderTasks();
+})
+
+async function createNewTask(taskTitle, taskPrio) {
   const response = await fetch("http://localhost:3001/tasks", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ title: taskTitle }),
+    body: JSON.stringify({ title: taskTitle, prio: taskPrio }),
   });
   const result = await response.json();
   return result;
@@ -170,6 +204,21 @@ async function DoneEdit(taskId, taskisDone) {
   const result = await response.json();
   return result;
 }
+
+async function prioEdit(taskId, taskPrio) {
+  const response = await fetch("http://localhost:3001/task/" + taskId + "/prio", {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ prio: taskPrio }),
+  });
+  const result = await response.json();
+  return result;
+}
+
+
+
 
 // DoneEdit(27, 0);
 renderTasks();

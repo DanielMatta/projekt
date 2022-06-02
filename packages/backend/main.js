@@ -21,9 +21,10 @@ app.post("/tasks", (req, res) => {
   const data = {
     title: req.body.title,
     isDone: "0",
+    prio: "0  ",
   };
-  const sql = "INSERT INTO tasks (title, isDone) VALUES (?,?)";
-  const params = [data.title, data.isDone];
+  const sql = "INSERT INTO tasks (title, isDone, prio) VALUES (?,?,?)";
+  const params = [data.title, data.isDone, data.prio];
   db.run(sql, params, (err) => {
     if (err) {
       res.status(400).json({ error: err.message });
@@ -60,6 +61,18 @@ app.patch("/task/:id/title", (req, res) => {
 app.patch("/task/:id/isdone", (req, res) => {
   const sql = "UPDATE tasks SET isDone = ? WHERE id = ?";
   const params = [req.body.isDone, req.params.id];
+  db.run(sql, params, (err) => {
+    if (err) {
+      res.status(400).json({ error: err.message });
+      return;
+    }
+    res.json({ message: "updated" });
+  });
+});
+
+app.patch("/task/:id/prio", (req, res) => {
+  const sql = "UPDATE tasks SET prio = ? WHERE id = ?";
+  const params = [req.body.prio, req.params.id];
   db.run(sql, params, (err) => {
     if (err) {
       res.status(400).json({ error: err.message });

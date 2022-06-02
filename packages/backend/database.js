@@ -13,7 +13,8 @@ const db = new sqlite.Database(dbName, (err) => {
       CREATE TABLE tasks (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         title text,
-        isDone INTEGER
+        isDone INTEGER,
+        prio INTEGER
       );
 
     `
