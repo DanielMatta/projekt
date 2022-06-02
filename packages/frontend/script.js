@@ -23,6 +23,7 @@ taskForm.addEventListener("submit", async (e) => {
 // console.log(document.getElementById("8"));
 
 
+
 function renderSingleTask(task) {
   const li = document.createElement("li");
   li.classList.add("container")
@@ -32,7 +33,20 @@ function renderSingleTask(task) {
   const label = document.createElement("label");
   input.append(label);
   input.classList.add("checkbox-round");
-  label.classList.add("checkmark");
+  // label.classList.add("checkmark");
+
+  input.addEventListener("click", async (e) => {
+    e.preventDefault();
+    const doneId = e.target.closest(".container").id;
+    if (input.checked) {
+      DoneEdit(doneId, 1);
+    } else {
+      DoneEdit(doneId, 0);
+    }
+    renderTasks();
+  })
+
+
   input.type = "checkbox";
   task.isDone === 1 ? (input.checked = true) : (input.checked = false);
 
@@ -49,6 +63,14 @@ function renderSingleTask(task) {
 
   const spanPencil = document.createElement("span");
   spanPencil.classList.add("edit");
+  // spanPencil.addEventListener("click", async (e) => {
+  //   const titleText = document.getElementsByClassName("todotask-text");
+  // e.preventDefault();
+  // const editTaskId = e.target.closest(".container").id;
+  // await editTask(editTaskId);
+  // renderTasks();
+  // console.log(titleText.parentNode);
+  // })
   const spanCross = document.createElement("span");
   spanCross.classList.add("delete");
   spanCross.addEventListener("click", async (e) => {
@@ -57,6 +79,7 @@ function renderSingleTask(task) {
     await deleteTask(deleteTaskId);
     renderTasks();
   })
+
 
 
 
@@ -136,5 +159,17 @@ async function editTask(taskId, taskTitle) {
   return result;
 }
 
-//editTask(16, "cau")
+async function DoneEdit(taskId, taskisDone) {
+  const response = await fetch("http://localhost:3001/task/" + taskId + "/isdone", {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ isDone: taskisDone }),
+  });
+  const result = await response.json();
+  return result;
+}
+
+// DoneEdit(27, 0);
 renderTasks();
