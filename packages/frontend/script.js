@@ -1,9 +1,8 @@
-import "./styles/style.scss";
+  import "./styles/style.scss";
 
 const todoList = document.getElementById("todolist");
 const taskForm = document.getElementById("new_task_form");
-const taskFormInput = document.getElementById("new_task_input");
-const buttons = document.getElementsByClassName("buttons");
+
 
 taskForm.addEventListener("submit", async (e) => {
   e.preventDefault();
@@ -24,19 +23,18 @@ function renderSingleTask(task) {
   const label = document.createElement("label");
   input.append(label);
   input.classList.add("checkbox-round");
-  // label.classList.add("checkmark");
+ 
 
   input.addEventListener("click", async (e) => {
     e.preventDefault();
     const doneId = e.target.closest(".container").id;
-    // const text = e.target.closest(".container").querySelector(".todotask").querySelector("h3");
+    
     if (input.checked) {
       await DoneEdit(doneId, 1);
-      // text.style.textDecorationLine = "line-through"
-      // console.log(e.target.closest(".container").querySelector(".todotask").querySelector("h3"));
+   
     } else {
       await DoneEdit(doneId, 0);
-      // text.style.textDecorationLine = "none"
+     
     }
     renderTasks();
   })
@@ -55,6 +53,7 @@ function renderSingleTask(task) {
   let i = 1;
   const colors = ["#9cd423", "orange", "red"];
   button.style.backgroundColor = colors[task.prio]
+
   button.addEventListener("click", (e) => {
     const editPrioId = e.target.closest(".container").id;
     if (i > 2) {
@@ -97,6 +96,7 @@ function renderSingleTask(task) {
   spanCross.addEventListener("click", async (e) => {
     e.preventDefault();
     const deleteTaskId = e.target.closest(".container").id;
+    await createNewTaskBin(task.title, task.prio, task.isDone);
     await deleteTask(deleteTaskId);
     renderTasks();
   })
@@ -168,6 +168,17 @@ async function createNewTask(taskTitle, taskPrio) {
   const result = await response.json();
   return result;
 }
+async function createNewTaskBin(taskTitle, taskPrio, taskIsDone) {
+  const response = await fetch("http://localhost:3001/tasksBin", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ title: taskTitle, prio: taskPrio, isDone: taskIsDone }),
+  });
+  const result = await response.json();
+  return result;
+}
 
 async function deleteTask(taskId) {
   const response = await fetch("http://localhost:3001/task/" + taskId, {
@@ -175,7 +186,7 @@ async function deleteTask(taskId) {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ id: taskId }),
+    body: JSON.stringify({ id: taskId}),
   });
   const result = await response.json();
   return result;
@@ -220,5 +231,5 @@ async function prioEdit(taskId, taskPrio) {
 
 
 
-// DoneEdit(27, 0);
+
 renderTasks();

@@ -30,6 +30,26 @@ main {
   gap: 1em;
 }
 
+main .taskSort {
+  width: 10em;
+  height: 2em;
+  border-radius: 2em;
+  border: none;
+  background-color: #84b026;
+  -webkit-box-shadow: 0px 1px 10px #353333;
+          box-shadow: 0px 1px 10px #353333;
+  cursor: pointer;
+  -webkit-transition: 0.5s ease-in-out;
+  transition: 0.5s ease-in-out;
+}
+
+main .taskSort:hover {
+  -webkit-box-shadow: 0px 1px 10px black;
+          box-shadow: 0px 1px 10px black;
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
+}
+
 main form {
   display: -ms-grid;
   display: grid;
@@ -86,6 +106,10 @@ main li.container {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+main li.container [contenteditable] {
+  outline: none;
 }
 
 main li.container .checkbox-round {
@@ -148,6 +172,7 @@ main li.container section.todotask {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  clear: both;
   height: 2.5em;
   width: 18em;
   border-radius: 0.8em;
@@ -185,18 +210,30 @@ main li.container section.todotask .buttons {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   gap: 1em;
-  padding-right: 1em;
-  opacity: 0;
   -webkit-transition: 0.8s ease-in-out;
   transition: 0.8s ease-in-out;
+}
+
+main li.container section.todotask .buttons .priority button {
+  position: relative;
+  top: 2px;
+  width: 1em;
+  height: 3em;
+  border-radius: 0 50% 50% 0;
+  border: none;
+  background-color: #9cd423;
+  cursor: pointer;
 }
 
 main li.container section.todotask .buttons .edit {
   color: #ffe41c;
   cursor: pointer;
-  -webkit-transform: scale(0.1);
-          transform: scale(0.1);
+  -webkit-transform: scale(0);
+          transform: scale(0);
   -webkit-transition: 0.5s ease-in-out;
   transition: 0.5s ease-in-out;
 }
@@ -210,8 +247,8 @@ main li.container section.todotask .buttons .edit:hover {
 main li.container section.todotask .buttons .delete {
   color: darkred;
   cursor: pointer;
-  -webkit-transform: scale(0.1);
-          transform: scale(0.1);
+  -webkit-transform: scale(0);
+          transform: scale(0);
   -webkit-transition: 0.5s ease-in-out;
   transition: 0.5s ease-in-out;
 }
@@ -233,12 +270,41 @@ footer {
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  position: fixed;
+  bottom: 1px;
+  width: 100%;
+}
+
+footer .hyper {
+  text-decoration: none;
+  color: black;
+  padding: 1em;
+  margin: 1em;
+  border-radius: 0.8em;
+  border: none;
+  -webkit-box-shadow: 0px 1px 10px #353333;
+          box-shadow: 0px 1px 10px #353333;
+  background-color: #84b026;
+  cursor: pointer;
+  -webkit-transition: 0.5s ease-in-out;
+  transition: 0.5s ease-in-out;
+}
+
+footer .hyper:hover {
+  -webkit-box-shadow: 0px 1px 10px black;
+          box-shadow: 0px 1px 10px black;
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
 }
 
 footer p {
-  position: fixed;
-  bottom: 1em;
-  left: 1em;
   color: rgba(0, 0, 0, 0.5);
+  margin: 1em;
 }
 /*# sourceMappingURL=style.css.map */
