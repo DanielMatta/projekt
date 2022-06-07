@@ -55,10 +55,6 @@ main {
         box-shadow: 0px 1px 10px black;
         transform: scale(1.2) rotate(-90deg);
       }
-      //   &:active {
-      //     transition: 0.3s;
-      //     transform: scale(1.05);
-      //   }
     }
     padding-bottom: 1em;
 
@@ -71,20 +67,19 @@ main {
       box-shadow: 0px 1px 10px rgb(53, 51, 51);
 
       &:focus {
-        outline: none; //nevieme co ked overflow
-        box-shadow: 0px 1px 10px black;
+        outline: none; 
+        box-shadow: 0px 1px 10px black; 
       }
     }
   }
 
   li.container {
-    display: flex;
-    // position: relative;
+    display: flex; 
+   
 
     padding: 0.5em;
     align-items: center;
     [contenteditable] {
-      //background-color: rgba(217, 245, 255, 0.5);
       outline: none;
     }
 
@@ -103,33 +98,6 @@ main {
     }
     .checkbox-round:checked {
       background-color: rgb(0, 255, 55);
-    }
-    .checkmark {
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 25px;
-      width: 25px;
-      background-color: #eee;
-      &::after {
-        content: "";
-        position: absolute;
-        display: none;
-      }
-    }
-    .container input:checked ~ .checkmark:after {
-      display: block;
-    }
-    .container .checkmark:after {
-      left: 9px;
-      top: 5px;
-      width: 5px;
-      height: 10px;
-      border: solid white;
-      border-width: 0 3px 3px 0;
-      -webkit-transform: rotate(45deg);
-      -ms-transform: rotate(45deg);
-      transform: rotate(45deg);
     }
     section.todotask {
       display: flex;
@@ -151,7 +119,6 @@ main {
 
       &:hover {
         .buttons {
-          opacity: 1;
           .delete {
             transform: scale(1);
           }
@@ -165,14 +132,13 @@ main {
         display: flex;
         align-items: center;
         gap: 1em;
-        // padding-right: 1em;
+        
 
         transition: 0.8s ease-in-out;
         .priority {
           button {
             position: relative;
-            top: 2px;
-            // right: 1em;
+            top: 2px;  
             width: 1em;
             height: 3em;
             border-radius: 0 50% 50% 0;
@@ -186,7 +152,6 @@ main {
           cursor: pointer;
           transform: scale(0);
           transition: 0.5s ease-in-out;
-          // opacity: 0;
           &:hover {
             color: #ffe943;
             transform: scale(1.2);
@@ -197,7 +162,6 @@ main {
           cursor: pointer;
           transform: scale(0);
           transition: 0.5s ease-in-out;
-          // opacity: 0;
 
           &:hover {
             color: red;
@@ -218,6 +182,7 @@ footer {
     user-select: none;
     display: flex;
     justify-content: space-between;
+    align-items: baseline;
     position: fixed;
     bottom: 1px;
     width: 100%;

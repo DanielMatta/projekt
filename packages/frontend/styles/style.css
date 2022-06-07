@@ -132,36 +132,6 @@ main li.container .checkbox-round:checked {
   background-color: #00ff37;
 }
 
-main li.container .checkmark {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 25px;
-  width: 25px;
-  background-color: #eee;
-}
-
-main li.container .checkmark::after {
-  content: "";
-  position: absolute;
-  display: none;
-}
-
-main li.container .container input:checked ~ .checkmark:after {
-  display: block;
-}
-
-main li.container .container .checkmark:after {
-  left: 9px;
-  top: 5px;
-  width: 5px;
-  height: 10px;
-  border: solid white;
-  border-width: 0 3px 3px 0;
-  -webkit-transform: rotate(45deg);
-  transform: rotate(45deg);
-}
-
 main li.container section.todotask {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -189,10 +159,6 @@ main li.container section.todotask {
 main li.container section.todotask .todotask-text {
   font-family: "Gochi Hand", cursive;
   font-size: 1.5em;
-}
-
-main li.container section.todotask:hover .buttons {
-  opacity: 1;
 }
 
 main li.container section.todotask:hover .buttons .delete {
@@ -276,6 +242,9 @@ footer {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  -webkit-box-align: baseline;
+      -ms-flex-align: baseline;
+          align-items: baseline;
   position: fixed;
   bottom: 1px;
   width: 100%;
